@@ -8,6 +8,26 @@ p {
     color: white;
 }
 
+.google {
+    background-color: #dd4b39;
+    color: white;
+    margin: 5px 20px 5px 20px;
+}
+
+.signin {
+    background-color: royalblue;
+    color: white;
+    margin: 5px 20px 10px 20px;
+}
+
+/* style the submit button */
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+}
+
+
 .wrapper {
     display: flex;
     align-items: center;
@@ -43,7 +63,7 @@ input[type=button], input[type=submit], input[type=reset]  {
     font-size: 13px;
     -webkit-border-radius: 5px 5px 5px 5px;
     border-radius: 5px 5px 5px 5px;
-    margin: 5px 20px 40px 20px;
+    margin: 5px 20px 5px 20px;
     -webkit-transition: all 0.3s ease-in-out;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
