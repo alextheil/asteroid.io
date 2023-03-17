@@ -6,7 +6,6 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
-    <script type="text/javascript" src="cordova.js"></script>
     <title>Asteroid.io</title>
     <meta name="description" content="Asteroid.io">
     <meta name="Alex Theil and Justin MacGregor" content="Asteroid.io">
@@ -29,21 +28,7 @@
         </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase.js"></script>
     <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyAtM76rxaPOMTffPqARgexZIT7_6uwKhHc",
-            authDomain: "asteroidio.firebaseapp.com",
-            databaseURL: "https://asteroidio.firebaseio.com",
-            projectId: "asteroidio",
-            storageBucket: "asteroidio.appspot.com",
-            messagingSenderId: "92861907648",
-            appId: "1:92861907648:web:2777e61fe7ad468a35a325",
-            measurementId: "G-YH753JLJYH"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();4
 
         function loginManually() {
             var name = document.getElementById("username").value.toString();
@@ -51,41 +36,29 @@
         }
 
         function loginWithGoogle() {
-            if (device.platform === "browser") {
-                console.log("Google Authentication successful");
-                var provider = new firebase.auth.GoogleAuthProvider();
-                firebase.auth().signInWithPopup(provider).then(function(result) {
-                    var user = firebase.auth().currentUser;
-                    var name, photoUrl;
+            var name = "John Doe"; // replace with actual name obtained from Google sign-in
+            var photoUrl = "https://example.com/photo.jpg"; // replace with actual photo URL obtained from Google sign-in
+            localStorage.setItem('userName', name);
+            localStorage.setItem('photo', photoUrl);
+            window.location.assign("game.html");
+        }
 
-                    if (user != null) {
-                        name = user.displayName;
-                        photoUrl = user.photoURL;
-                        localStorage.setItem('userName', name);
-                        localStorage.setItem('photo', photoUrl);
+        function logOut() {
+            if (typeof device !== "undefined" && device.platform !== "browser") {
+                // Handle logout for non-browser platforms here
+                window.plugins.googleplus.logout(
+                    function (msg) {
+                        alert(msg);
+                        window.location.assign("index.html");
                     }
-                    window.location.assign("game.html");
-
-                }).catch(function(error) {
-                });
-            } else if (device.platform === "android"){
-                window.plugins.googleplus.login( {
-                }, function(result) {
-                    var user = firebase.auth().currentUser;
-                    var name, photoUrl;
-
-                    if (user != null) {
-                        name = user.displayName;
-                        photoUrl = user.photoURL;
-                        localStorage.setItem('userName', name);
-                        localStorage.setItem('photo', photoUrl);
-                    }
-                    window.location.assign("game.html");
-                }, function(error) {
-                    alert(JSON.stringify(error));
-                });
+                );
+            } else {
+                // Handle logout for the browser platform here
+                localStorage.removeItem('userName');
+                window.location.assign("index.html");
             }
         }
+
     </script>
 </body>
 </html>

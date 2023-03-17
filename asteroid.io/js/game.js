@@ -232,23 +232,23 @@ class Asteroid{
         this.collisionRadius = collisionRadius || 46;
         this.level = level || 1;
     }
-    Update(){
-        //direction the asteroid is moving is used to draw asteroids in motion
+    Update() {
         let radians = this.angle / Math.PI * 180;
         this.x += Math.cos(radians) * this.speed;
         this.y += Math.sin(radians) * this.speed;
-        //if an asteroid reaches offscreen, wrap it around
-        if (this.x < this.radius) {
-            this.x = canvas.width;
+
+        // Wrap around the canvas if the asteroid goes off-screen
+        if (this.x < -this.radius) {
+            this.x = canvas.width + this.radius;
         }
-        if (this.x > canvas.width) {
-            this.x = this.radius;
+        if (this.x > canvas.width + this.radius) {
+            this.x = -this.radius;
         }
-        if (this.y < this.radius) {
-            this.y = canvas.height;
+        if (this.y < -this.radius) {
+            this.y = canvas.height + this.radius;
         }
-        if (this.y > canvas.height) {
-            this.y = this.radius;
+        if (this.y > canvas.height + this.radius) {
+            this.y = -this.radius;
         }
     }
     Draw(){
@@ -348,7 +348,7 @@ function DrawHP(){
 }
 
 function Render() {
-
+    
     ship.movingForward = (keys[87]);
     //calling this every frame creates proper timing for shot cooldown
     gun.update();

@@ -5,7 +5,6 @@
     <title>Asteroid.io</title>
     <script type="text/javascript" src="js/game.js"></script>
     <link rel="stylesheet" type="text/css" href="css/gameCanvas.css">
-    <script type="text/javascript" src="cordova.js"></script>
 </head>
 
 <body onload="screen.orientation.lock('landscape')">
@@ -19,42 +18,28 @@
         <button id='userName'>Username</button>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase.js"></script>
     <script>
-        var firebaseConfig = {
-            apiKey: "AIzaSyAtM76rxaPOMTffPqARgexZIT7_6uwKhHc",
-            authDomain: "asteroidio.firebaseapp.com",
-            databaseURL: "https://asteroidio.firebaseio.com",
-            projectId: "asteroidio",
-            storageBucket: "asteroidio.appspot.com",
-            messagingSenderId: "92861907648",
-            appId: "1:92861907648:web:2777e61fe7ad468a35a325",
-            measurementId: "G-YH753JLJYH"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        firebase.analytics();
 
         document.getElementById('userName').innerText = localStorage.getItem('userName');
 
         console.log(name);
 
         function logOut() {
-            if (device.platform === "browser") {
-                firebase.auth().signOut().then(function() {
-                    window.location.assign("index.html");
-                }, function(error) {
-                    alert(error);
-                });
-            } else {
+            if (typeof device !== "undefined" && device.platform !== "browser") {
+                // Handle logout for non-browser platforms here
                 window.plugins.googleplus.logout(
                     function (msg) {
                         alert(msg);
                         window.location.assign("index.html");
                     }
                 );
+            } else {
+                // Handle logout for the browser platform here
+                localStorage.removeItem('userName');
+                window.location.assign("index.html");
             }
         }
+
 
 
     </script>
