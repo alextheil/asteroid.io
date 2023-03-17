@@ -1,0 +1,71 @@
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: white;
+}
+
+#container{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+button{
+    border-radius: 0px;
+    text-decoration: none;
+    padding: 6px 4px;
+    font-size: 10px;
+    line-height: 19px;
+    text-transform: uppercase;
+    font-family: 'Helvetica', sans-serif; font-weight:400;
+    letter-spacing: 2px;
+    border:solid 1px #fff;
+    background: transparent;
+    color: #fff !important;
+}
+
+#buttonTopSpeed {
+    position:absolute;
+    visibility: hidden;
+    left:41.75%;
+    bottom:42.5%;
+}
+
+#buttonWeight {
+    position:absolute;
+    visibility: hidden;
+    left:48%;
+    bottom:42.5%;
+}
+
+#buttonFireRate {
+    position:absolute;
+    visibility: hidden;
+    left:52.75%;
+    bottom:42.5%;
+}
+
+#buttonLogOut {
+    position:absolute;
+    left:95.5%;
+    bottom:95.5%;
+}
+
+#userName {
+    position:absolute;
+    bottom:52.5%;
+    left:47%;
+    border: #0d0d0d;
+}
+
+#asteroid-canvas {
+    background: black;
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+button {
+    z-index: 2;
+}
